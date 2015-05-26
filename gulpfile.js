@@ -9,7 +9,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('challenges/**/*.html')
+  return gulp.src('challenges/**/*.html')
     .pipe(livereload());
 });
 
