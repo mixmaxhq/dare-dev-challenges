@@ -4,6 +4,10 @@ var cached = require('gulp-cached');
 var livereload = require('gulp-livereload');
 var cssLinter = require('gulp-csslint');
 var htmlLinter = require('gulp-html5-lint');
+var child_process = require('child_process');
+var Firebase = require('Firebase');
+var hostnameListRef = new Firebase('https://dazzling-heat-7283.firebaseio.com/hostnames');
+var hostnameRef;
 
 var htmlPath = 'challenges/**/*.html';
 var cssPath = 'challenges/**/*.css';
@@ -48,4 +52,23 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('default', ['css', 'html', 'server', 'watch']);
+gulp.task('publish-hostname', function(done) {
+  child_process.exec('hostname', function(err, hostname) {
+    if (err) {
+      done(err);
+      return;
+    }
+
+    hostnameRef = hostnameListRef.push(hostname.trim(), done);
+  });
+});
+
+process.on('SIGINT', function() {
+  if (!hostnameRef) process.exit();
+
+  hostnameRef.remove(function() {
+    process.exit();
+  });
+});
+
+gulp.task('default', ['css', 'html', 'server', 'watch', 'publish-hostname']);
