@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mixmaxhq/dare-dev-challenges#readme",
   "dependencies": {
     "connect-livereload": "^0.5.3",
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "serve-static": "^1.9.3"
   }
 }
