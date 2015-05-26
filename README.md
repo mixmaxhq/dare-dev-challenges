@@ -3,10 +3,11 @@ Challenges for DareDev May 28th, 2015
 
 # Getting Started
 
-1. Install Node.js, either from [its website](https://nodejs.org/) or using [Homebrew](http://brew.sh/).
-2. From the root of this project, run `npm install`.
-3. Disable the OS X firewall (so that the emcee can load your local webserver, to see your site in progress).
-4. Run `npm start`.
+1. Install [Google Chrome](https://www.google.com/chrome).
+2. Install Node.js, either from [its website](https://nodejs.org/) or using [Homebrew](http://brew.sh/).
+3. From the root of this project, run `npm install`.
+4. Disable the OS X firewall (so that the emcee can load your local webserver, to see your site in progress).
+5. Run `npm start`.
 
 # Rules
 
