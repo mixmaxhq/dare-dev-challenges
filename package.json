@@ -21,6 +21,7 @@
     "express": "^4.12.4"
   },
   "devDependencies": {
+    "firebase": "^2.2.5",
     "gulp": "^3.8.11",
     "gulp-cached": "^1.1.0",
     "gulp-csslint": "^0.1.5",
