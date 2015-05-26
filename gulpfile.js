@@ -39,8 +39,13 @@ gulp.task('server', function(done) {
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  gulp.watch([htmlPath], ['html']);
+  var watcher = gulp.watch([htmlPath], ['html']);
   gulp.watch([cssPath], ['css']);
+  watcher.on('change', function(event) {
+    gulp.src(event.path)
+      .pipe(livereload());
+    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+  });
 });
 
 gulp.task('default', ['css', 'html', 'server', 'watch']);
