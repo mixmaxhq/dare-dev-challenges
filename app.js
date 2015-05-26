@@ -8,6 +8,7 @@ app.use('/preview', function(req, res, next) {
   });
 });
 
+app.use(require('connect-livereload')({ port: 19999 }));
 app.use(express.static(__dirname, {
   // Don't cache anything.
   maxAge: 0

@@ -1,27 +1,30 @@
 <!DOCTYPE html>
   <head>
-    <title>Challenge Preview</title>
+    <title>Challenge Preview #1</title>
   </head>
   <body>
-    <iframe id="preview" height="1024" width="800" frameBorder="0"></iframe>
+    <iframe src="/challenges/1/index.html" id="preview" height="1024" width="800" frameBorder="0"></iframe>
     <script>
       var iframe = document.getElementById('preview');
-      var ws = new WebSocket('ws://localhost:19999/livereload');
+      var wsHost = document.location.hostname.split(':')[0] + ':19999';
+      var ws = new WebSocket('ws://' + wsHost + '/livereload');
       ws.onopen = function(event) {
         var hello = {
           command: 'hello',
           protocols: ['http://livereload.com/protocols/official-7']
         };
-
         ws.send(JSON.stringify(hello));
       };
 
       ws.onmessage = function(event) {
         var data = JSON.parse(event.data) || {};
-        if (data.command === 'reload' && data.path.endsWith('html')) {
-          var src = data.path.split('/').splice(-3).join('/');
-          iframe.setAttribute('src', '/' + src);
-          document.title = 'Challenge Preview #' + src.split('/')[1];
+        if (data.command === 'reload') {
+          var src = data.path.split('/').splice(-3).splice(0, 2).join('/') + '/index.html';
+          var newSrc = '/' + src;
+          if (iframe.getAttribute('src') !== newSrc) {
+            iframe.setAttribute('src', newSrc);
+            document.title = 'Challenge Preview #' + src.split('/')[1];
+          }
         }
       };
     </script>
