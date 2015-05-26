@@ -5,7 +5,7 @@ Challenges for DareDev May 28th, 2015
 
 1. Install Node.js, either from [its website](https://nodejs.org/) or using [Homebrew](http://brew.sh/).
 2. From the root of this project, run `npm install`.
-3. Run `npm start` to run the local webserver and activate livereload for the files.
+3. Run `npm start`.
 
 # Rules
 
