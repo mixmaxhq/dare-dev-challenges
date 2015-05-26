@@ -9,18 +9,18 @@ var Firebase = require('Firebase');
 var hostnameListRef = new Firebase('https://dazzling-heat-7283.firebaseio.com/hostnames');
 var hostnameRef;
 
-var htmlPath = 'challenges/**/*.html';
-var cssPath = 'challenges/**/*.css';
+var HTML_PATH = 'challenges/**/*.html';
+var CSS_PATH = 'challenges/**/*.css';
 
 gulp.task('html', function() {
-  return gulp.src(htmlPath)
+  return gulp.src(HTML_PATH)
     .pipe(cached('html'))
     .pipe(livereload())
     .pipe(htmlLinter());
 });
 
 gulp.task('css', function() {
-  return gulp.src(cssPath)
+  return gulp.src(CSS_PATH)
     .pipe(cached('css'))
     .pipe(livereload())
     .pipe(cssLinter({
@@ -43,9 +43,10 @@ gulp.task('server', function(done) {
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  gulp.watch([htmlPath], ['html']);
-  gulp.watch([cssPath], ['css']);
-  var watcher = gulp.watch(['challenges/**/*.html', 'challenges/**/*.css']);
+  gulp.watch([HTML_PATH], ['html']);
+  gulp.watch([CSS_PATH], ['css']);
+
+  var watcher = gulp.watch([HTML_PATH, CSS_PATH]);
   watcher.on('change', function(event) {
     gulp.src(event.path)
       .pipe(livereload());
