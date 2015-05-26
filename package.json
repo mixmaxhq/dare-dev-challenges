@@ -23,6 +23,7 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-cached": "^1.1.0",
+    "gulp-csslint": "^0.1.5",
     "gulp-html5-lint": "^1.0.1",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.3"
