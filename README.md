@@ -1,6 +1,17 @@
 # DareDev README
 Challenges for DareDev May 28th, 2015
 
+# Installation
+Need a working node+npm environment. Use homebrew (OS X only) to install node.
+
+```
+npm install
+```
+
+```
+npm run
+```
+
 # Rules
 NO browser previews. Anything else is fair game. Use syntax checkers and linters to avoid simple mistakes.
 Javascript is not permitted (it wouldn't help you very much anyway).

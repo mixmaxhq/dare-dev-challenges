@@ -1,0 +1,23 @@
+{
+  "name": "dare-dev-challenges",
+  "version": "1.0.0",
+  "description": "DareDev challenge runner",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mixmaxhq/dare-dev-challenges.git"
+  },
+  "author": "Andrew Tamura",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixmaxhq/dare-dev-challenges/issues"
+  },
+  "homepage": "https://github.com/mixmaxhq/dare-dev-challenges#readme",
+  "dependencies": {
+    "connect-livereload": "^0.5.3",
+    "express": "^4.12.4"
+  }
+}
