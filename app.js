@@ -1,8 +1,11 @@
 var express = require('express');
-var serveStatic = require('serve-static')
 var app = express();
 
-app.use(require('connect-livereload')());
-app.listen('8888');
+app.use(require('connect-livereload')({ port: 19999 }));
 
-app.use(serveStatic('challenges', {index: ['index.html']}));
+app.use(express.static(__dirname, {
+  // Don't cache anything.
+  maxAge: 0
+}));
+
+app.listen('8888');
