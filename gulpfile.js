@@ -43,14 +43,11 @@ gulp.task('server', function(done) {
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  gulp.watch([HTML_PATH], ['html']);
-  gulp.watch([CSS_PATH], ['css']);
-
-  var watcher = gulp.watch([HTML_PATH, CSS_PATH]);
-  watcher.on('change', function(event) {
-    gulp.src(event.path)
-      .pipe(livereload());
-  });
+  function reload(file) {
+    livereload.changed(file.path);
+  }
+  gulp.watch([HTML_PATH], ['html']).on('change', reload);
+  gulp.watch([CSS_PATH], ['css']).on('change', reload);
 });
 
 gulp.task('publish-hostname', function(done) {
