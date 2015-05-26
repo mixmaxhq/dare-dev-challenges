@@ -9,14 +9,14 @@ gulp.task('server', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('challenge-*/*.html')
+  gulp.src('challenges/**/*.html')
     .pipe(livereload());
 });
 
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  gulp.watch('**/*.html', ['html']);
+  gulp.watch('challenges/**/*.html', ['html']);
 });
 
 gulp.task('default', ['server', 'watch']);
