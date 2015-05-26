@@ -4,3 +4,4 @@
 
 # node modules directory
 node_modules
+.DS_Store
