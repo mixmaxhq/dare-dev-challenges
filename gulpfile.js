@@ -1,22 +1,28 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
+var cached = require('gulp-cached');
 var livereload = require('gulp-livereload');
+var htmlLinter = require('gulp-html5-lint');
 
-gulp.task('server', function() {
+var htmlPath = 'challenges/**/*.html';
+
+gulp.task('html', function() {
+  return gulp.src(htmlPath)
+    .pipe(cached('html'))
+    .pipe(livereload())
+    .pipe(htmlLinter());
+});
+
+gulp.task('server', function(done) {
   nodemon({
     script: 'app.js'
   });
 });
 
-gulp.task('html', function() {
-  return gulp.src('challenges/**/*.html')
-    .pipe(livereload());
-});
-
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  gulp.watch('challenges/**/*.html', ['html']);
+  gulp.watch([htmlPath], ['html']);
 });
 
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['html', 'server', 'watch']);
