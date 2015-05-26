@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var cached = require('gulp-cached');
 var livereload = require('gulp-livereload');
+var cssLinter = require('gulp-csslint');
 var htmlLinter = require('gulp-html5-lint');
 
 var htmlPath = 'challenges/**/*.html';
@@ -17,7 +18,16 @@ gulp.task('html', function() {
 gulp.task('css', function() {
   return gulp.src(cssPath)
     .pipe(cached('css'))
-    .pipe(livereload());
+    .pipe(livereload())
+    .pipe(cssLinter({
+      // Only flag errors.
+      'box-model': true,
+      'display-property-grouping': true,
+      'duplicate-properties': true,
+      'empty-rules': true,
+      'known-properties': true
+    }))
+    .pipe(cssLinter.reporter());
 });
 
 gulp.task('server', function(done) {
