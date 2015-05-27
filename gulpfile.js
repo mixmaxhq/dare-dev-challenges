@@ -30,14 +30,12 @@ function rescheduleSaveReminder() {
 gulp.task('html', function() {
   return gulp.src(HTML_PATH)
     .pipe(cached('html'))
-    .pipe(livereload())
     .pipe(htmlLinter());
 });
 
 gulp.task('css', function() {
   return gulp.src(CSS_PATH)
     .pipe(cached('css'))
-    .pipe(livereload())
     .pipe(cssLinter({
       // Only flag errors.
       'box-model': true,
