@@ -43,9 +43,3 @@ Each index.html file will be loaded by an up-to-date Chrome web browser. Your su
 be judged on the final rendered output of the index.html file. Your submission will not be judged on
 code quality or any other HTML/CSS 'best practices'. The only factor is how the final rendered
 index.html looks compared to the referrence design.
-
-# Challenge 1
-# Challenge 2
-# Challenge 3
-# Challenge 4
-# Challenge 5
