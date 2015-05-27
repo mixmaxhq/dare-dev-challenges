@@ -8,6 +8,9 @@ Challenges for DareDev May 28th, 2015
 3. From the root of this project, run `npm install`.
 4. Disable the OS X firewall (so that the emcee can load your local webserver, to see your site in progress).
 5. Run `npm start`.
+6. Put the webpage that just opened on the external monitor.
+7. Make the Mission Control page of your OS X settings look like [this](readme_images/spaces_settings.png)
+and also disable Hot Corners on the Mission Control page (so that you won't accidentally switch the external monitor away from the preview page).
 
 # Rules
 
