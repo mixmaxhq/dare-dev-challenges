@@ -4,6 +4,7 @@ var cached = require('gulp-cached');
 var livereload = require('gulp-livereload');
 var cssLinter = require('gulp-csslint');
 var htmlLinter = require('gulp-html5-lint');
+var notifier = require('node-notifier');
 var child_process = require('child_process');
 var Firebase = require('Firebase');
 var hostnameListRef = new Firebase('https://dazzling-heat-7283.firebaseio.com/hostnames');
@@ -11,6 +12,20 @@ var hostnameRef;
 
 var HTML_PATH = 'challenges/**/*.html';
 var CSS_PATH = 'challenges/**/*.css';
+
+var SAVE_REMINDER_INTERVAL = 30; // in seconds.
+
+var saveReminder;
+function rescheduleSaveReminder() {
+  clearTimeout(saveReminder);
+  saveReminder = setTimeout(function() {
+    notifier.notify({
+      title: 'Please save!',
+      message: 'You have not saved in ' + SAVE_REMINDER_INTERVAL + ' seconds.'
+    });
+    rescheduleSaveReminder();
+  }, SAVE_REMINDER_INTERVAL * 1000);
+}
 
 gulp.task('html', function() {
   return gulp.src(HTML_PATH)
@@ -43,11 +58,14 @@ gulp.task('server', function(done) {
 gulp.task('watch', function() {
   livereload.listen({ port: 19999 });
 
-  function reload(file) {
+  function fileChanged(file) {
+    rescheduleSaveReminder();
     livereload.changed(file.path);
   }
-  gulp.watch([HTML_PATH], ['html']).on('change', reload);
-  gulp.watch([CSS_PATH], ['css']).on('change', reload);
+  gulp.watch([HTML_PATH], ['html']).on('change', fileChanged);
+  gulp.watch([CSS_PATH], ['css']).on('change', fileChanged);
+
+  rescheduleSaveReminder();
 });
 
 gulp.task('publish-hostname', function(done) {
