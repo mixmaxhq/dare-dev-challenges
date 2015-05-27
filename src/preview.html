@@ -22,7 +22,17 @@
           var src = data.path.split('/').splice(-3).splice(0, 2).join('/') + '/index.html';
           var newSrc = '/' + src;
           if (iframe.getAttribute('src') !== newSrc) {
+            if (iframe.parentNode) {
+              iframe.parentNode.removeChild(iframe);
+              iframe = document.createElement("iframe");
+              iframe.setAttribute('id', 'preview');
+              iframe.setAttribute('height', '1024');
+              iframe.setAttribute('width', '800');
+              iframe.setAttribute('frameBorder', '0');
+            }
+
             iframe.setAttribute('src', newSrc);
+            document.body.appendChild(iframe);
             document.title = 'Challenge Preview #' + src.split('/')[1];
           }
         }
