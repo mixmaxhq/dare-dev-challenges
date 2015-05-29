@@ -67,13 +67,15 @@ gulp.task('watch', function() {
 });
 
 gulp.task('publish-hostname', function(done) {
-  child_process.exec('hostname', function(err, hostname) {
+  child_process.exec('scutil --get LocalHostName', function(err, hostname) {
     if (err) {
       done(err);
       return;
     }
 
-    hostnameRef = hostnameListRef.push(hostname.trim(), done);
+    hostname = hostname.trim() + '.local';
+
+    hostnameRef = hostnameListRef.push(hostname, done);
   });
 });
 
