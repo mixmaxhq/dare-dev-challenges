@@ -85,8 +85,4 @@ process.on('SIGINT', function() {
   });
 });
 
-gulp.task('open-preview', function(done) {
-  child_process.exec('open ' + 'http://localhost:8888/preview', done);
-});
-
-gulp.task('default', ['css', 'html', 'server', 'watch', 'publish-hostname', 'open-preview']);
+gulp.task('default', ['css', 'html', 'server', 'watch', 'publish-hostname']);
