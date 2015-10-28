@@ -1,0 +1,13 @@
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+  background: url(assets/background.png) no-repeat;
+  background-size: 100%;
+}
+
+body, html {
+  min-height: 1500px;
+  height: 100%;
+}
