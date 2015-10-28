@@ -13,7 +13,7 @@ var hostnameRef;
 var HTML_PATH = 'challenges/**/*.html';
 var CSS_PATH = 'challenges/**/*.css';
 
-var SAVE_REMINDER_INTERVAL = 30; // in seconds.
+var SAVE_REMINDER_INTERVAL = 120; // in seconds.
 
 var saveReminder;
 function rescheduleSaveReminder() {
