@@ -1,0 +1,6 @@
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
