@@ -6,7 +6,7 @@ var cssLinter = require('gulp-csslint');
 var htmlLinter = require('gulp-html5-lint');
 var notifier = require('node-notifier');
 var child_process = require('child_process');
-var Firebase = require('Firebase');
+var Firebase = require('firebase');
 var hostnameListRef = new Firebase('https://dazzling-heat-7283.firebaseio.com/hostnames');
 var hostnameRef;
 
