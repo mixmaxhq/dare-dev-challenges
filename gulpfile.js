@@ -6,7 +6,7 @@ var cssLinter = require('gulp-csslint');
 var htmlLinter = require('gulp-html5-lint');
 var notifier = require('node-notifier');
 var child_process = require('child_process');
-var Firebase = require('Firebase');
+var Firebase = require('firebase');
 var hostnameListRef = new Firebase('https://dazzling-heat-7283.firebaseio.com/hostnames');
 var hostnameRef;
 
@@ -67,16 +67,20 @@ gulp.task('watch', function() {
 });
 
 gulp.task('publish-hostname', function(done) {
-  child_process.exec('scutil --get LocalHostName', function(err, hostname) {
-    if (err) {
-      done(err);
-      return;
-    }
+  if (process.env.DARE_HOSTNAME) {
+    hostnameRef = hostnameListRef.push(process.env.DARE_HOSTNAME, done);
+  } else {
+    child_process.exec('scutil --get LocalHostName', function(err, hostname) {
+      if (err) {
+        done(err);
+        return;
+      }
 
-    hostname = hostname.trim() + '.local';
+      hostname = hostname.trim() + '.local';
 
-    hostnameRef = hostnameListRef.push(hostname, done);
-  });
+      hostnameRef = hostnameListRef.push(hostname, done);
+    });
+  }
 });
 
 process.on('SIGINT', function() {
